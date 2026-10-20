@@ -1,0 +1,17 @@
+# torch is installed by setup.sh first, from the index that matches your GPU.
+transformers==4.57.1
+tokenizers==0.22.1
+safetensors==0.6.2
+accelerate==1.11.0
+huggingface_hub==0.36.0
+numpy==2.4.6
+scipy==1.17.1
+pandas==3.0.5
+pyarrow==25.0.1
+matplotlib==3.11.1
+pillow==12.3.0
+wordcloud==1.9.6
+tqdm==4.70.0
+pyyaml==6.0.3
+httpx==0.28.1
+orjson==3.12.0

@@ -1,0 +1,10 @@
+artefacts
+results/
+hf_dataset/
+models/
+.venv/
+nla/nla_inference.py
+__pycache__/
+# working notes for this build, not part of the repository
+PLAN.md
+NOTES_FOR_USER.md

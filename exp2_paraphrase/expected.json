@@ -1,0 +1,17 @@
+[
+ {"paper": "H2: median damage of a meaning-preserving rewrite", "file": "results/paraphrase_analysis_n60.json", "path": ["conditions", "paraphrase/light", "rel", "median"], "expected": "0.021"},
+ {"paper": "H2: median damage of a word-order shuffle", "file": "results/paraphrase_analysis_n60.json", "path": ["conditions", "mechanical/shuffle", "rel", "median"], "expected": "0.152"},
+ {"paper": "H2: 40-way retrieval before rewriting", "file": "results/paraphrase_analysis_n60.json", "path": ["retrieval", "orig", "top1"], "expected": "0.917"},
+ {"paper": "H2: 40-way retrieval after rewriting", "file": "results/paraphrase_analysis_n60.json", "path": ["retrieval", "light", "top1"], "expected": "0.917"},
+ {"paper": "authorship effect: paraphrase - own top-k at matched wording", "file": "results/paraphrase_analysis_n60.json", "path": ["matched", "paraphrase/light - topk/dose16", "mean"], "expected": "0.073"},
+ {"paper": "authorship effect: SE", "file": "results/paraphrase_analysis_n60.json", "path": ["matched", "paraphrase/light - topk/dose16", "se"], "expected": "0.034"},
+ {"paper": "authorship effect: p", "file": "results/paraphrase_analysis_n60.json", "path": ["matched", "paraphrase/light - topk/dose16", "t_p"], "expected": "0.041"},
+ {"paper": "tail: 5% of rewrites lose more than 0.25", "file": "results/paraphrase_analysis_n60.json", "path": ["conditions", "paraphrase/light", "rel", "frac_above", "0.25"], "expected": "0.05"},
+ {"paper": "Fig paraphrase: n = 60 conversations", "file": "results/paraphrase_analysis_n60.json", "path": ["n_conv"], "expected": "60"},
+
+ {"paper": "Exp1 error increase: 1-claim rival (deg)", "file": "results/paraphrase_plus_rivals_analysis.json", "path": ["conditions", "rival/n1", "delta", "mean"], "expected": "0.06"},
+ {"paper": "Exp1 error increase: account of a different activation (deg)", "file": "results/paraphrase_plus_rivals_analysis.json", "path": ["conditions", "other_conversation/true-but-wrong", "delta", "mean"], "expected": "23.86"},
+ {"paper": "Exp1 error increase: single mechanical word swap (deg)", "file": "results/paraphrase_plus_rivals_analysis.json", "path": ["conditions", "corruption/dose1", "delta", "mean"], "expected": "0.05"},
+ {"paper": "Exp1 error increase: AV's own top-k, 16 words (deg)", "file": "results/paraphrase_plus_rivals_analysis.json", "path": ["conditions", "topk/dose16", "delta", "mean"], "expected": "0.24"},
+ {"paper": "Exp1 error increase: light paraphrase (deg)", "file": "results/paraphrase_plus_rivals_analysis.json", "path": ["conditions", "paraphrase/light", "delta", "mean"], "expected": "1.78"}
+]
