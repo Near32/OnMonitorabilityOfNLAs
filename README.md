@@ -77,9 +77,30 @@ are used as they are. The reproduction from scratch re-runs it.
 ## Reproduction from scratch
 
 This samples WildChat, generates the explanations, rivals, judge verdicts
-and paraphrases, and scores them. It is on the `regenerate` branch, if present.
-Its numbers should fall within the paper's confidence intervals rather than
-match them exactly.
+and paraphrases, and scores them. It also re-runs the judge's validation.
+Every script holds one 7B model at a time (about 16 GB of GPU memory).
+
+```bash
+./setup.sh --with-av                        # adds the AV, spacy and its English model
+mv artefacts artefacts.released             # this writes a fresh artefacts/
+bash exp1_identification/run_full.sh        # about 4.5 h
+bash exp2_paraphrase/run_full.sh            # about 40 min
+python check_results.py
+```
+
+`N=100 bash exp1_identification/run_full.sh` (and the same `N` for Experiment
+2) runs every stage on 100 conversations instead of the paper's sizes; the
+numbers of `check_results.py` then only serve as a reference.
+
+Run at the paper's sizes on the GPU below, every artefact that comes from
+greedy decoding or the AR (the explanations, all mechanical corruptions and
+their CSVs, the activations, the probe cache) is byte-identical to the
+released one, so 32 of the 58 numbers match exactly. Qwen's sampled rivals and
+paraphrases come out identical for 32 of 40 and 50 of 60 conversations; the
+rest diverge, apparently through GPU nondeterminism in batched sampling. The
+numbers that depend on them move within the paper's confidence intervals: the
+judge-confirmed 1-claim rival AUC is 0.605, 95% CI [0.469, 0.735], against
+0.602 [0.471, 0.728].
 
 ## Hardware
 

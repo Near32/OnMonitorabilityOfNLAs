@@ -4,14 +4,15 @@
 #   ./setup.sh                          download everything (reproduction from artefacts)
 #   ./setup.sh --local-artefacts DIR    use artefacts already on disk
 #   ./setup.sh --ar-dir DIR             use an AR checkpoint already on disk
-#   ./setup.sh --with-av                also download the AV (reproduction from scratch)
+#   ./setup.sh --with-av                reproduction from scratch: also the AV,
+#                                       spacy and its English model
 #
 # TORCH_INDEX_URL picks the torch build (default: CUDA 12.8 wheels). If torch
 # is already importable in .venv it is left alone.
 set -euo pipefail
 cd "$(dirname "$0")"
 
-HF_DATASET_ID=${HF_DATASET_ID:-<hf-user>/OnMonitorabilityOfNLAs-artefacts}
+HF_DATASET_ID=${HF_DATASET_ID:-Near32/OnMonitorabilityOfNLAs-artefacts}
 TORCH_VERSION=${TORCH_VERSION:-2.9.1}
 TORCH_INDEX_URL=${TORCH_INDEX_URL:-https://download.pytorch.org/whl/cu128}
 NLA_INFERENCE_SHA=38b802a33d1d317f21b6825a9116f388c2141f86
@@ -58,7 +59,11 @@ if [ -n "$ar_dir" ]; then
 else
   hf download "$AR_REPO" --revision "$AR_REV" --local-dir models/ar
 fi
-[ "$with_av" = 1 ] && hf download "$AV_REPO" --revision "$AV_REV" --local-dir models/av
+if [ "$with_av" = 1 ]; then
+  hf download "$AV_REPO" --revision "$AV_REV" --local-dir models/av
+  pip install spacy==3.8.16 \
+    https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl
+fi
 
 python - <<'EOF'
 import torch
